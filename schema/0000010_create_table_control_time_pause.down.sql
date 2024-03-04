@@ -1,0 +1,2 @@
+drop table control_time_pause;
+drop table control_time_pause_history;

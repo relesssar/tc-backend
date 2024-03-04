@@ -1,0 +1,1 @@
+drop table filter_access_groups;

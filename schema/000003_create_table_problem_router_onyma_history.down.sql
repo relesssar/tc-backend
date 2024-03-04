@@ -1,0 +1,1 @@
+drop table problem_router_onyma_history;

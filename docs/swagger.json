@@ -1,0 +1,3684 @@
+{
+    "schemes": [
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "API Сервер для Программы Total Control",
+        "title": "Total Control",
+        "contact": {
+            "name": "Серышев А.В., Яценко К.Ю.",
+            "email": "7773785631@mail.ru,K.Yatsenko@kaztranscom.kz"
+        },
+        "version": "1.0"
+    },
+    "host": "tc.kaztranscom.kz:9000",
+    "basePath": "/",
+    "paths": {
+        "/api/access_group": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Список данных Access Group по переданным параметрам",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Access Group"
+                ],
+                "summary": "Список данных",
+                "operationId": "get-access-group-by-query",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "в формате yyyy-mm-dd",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Учитывать или нет фильтр",
+                        "name": "check_filter",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Закрыто, В обработке",
+                        "name": "access_status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "можно указать несколько, через запятую ",
+                        "name": "router_name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getAllAccessGroupByQueryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление в базу новых данных",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Access Group"
+                ],
+                "summary": "Добавление данных",
+                "operationId": "insert-access-group",
+                "parameters": [
+                    {
+                        "description": "Данные для внесения в базу",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.AccessGroup"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/access_group/access_group_history": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Получение  данных, история изменений, разные данные",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Access Group"
+                ],
+                "summary": "Получение данных",
+                "operationId": "get-access-group-history",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "name": "ids",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/access_group/download": {
+            "get": {
+                "description": "Скачивание файла статистики Форма 1(Excell)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Access Group"
+                ],
+                "summary": "Скачивание файла списка Access Group",
+                "operationId": "download-excell-file-access-group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "в формате yyyy-mm-dd",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Учитывать или нет фильтр",
+                        "name": "check_filter",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Закрыто, В обработке",
+                        "name": "access_status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "можно указать несколько, через запятую ",
+                        "name": "router_name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/access_group/filter_access_group": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Получение  данных, Фильтры, разные данные",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Filter Access Group"
+                ],
+                "summary": "Получение данных",
+                "operationId": "get-filter-access-group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "created_at",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "filter_desc",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "filter_type",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "filter_val",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "router_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "user_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "user_name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление в базу новых данных, история изменений, разные данные",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Filter Access Group"
+                ],
+                "summary": "Добавление данных в filter(Исключения)",
+                "operationId": "insert-filter-access-group",
+                "parameters": [
+                    {
+                        "description": "Данные для внесения в базу",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.FilterAccessGroup"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/access_group/filter_access_group/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Удаление Фильтра",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Filter Access Group"
+                ],
+                "summary": "Удаление",
+                "operationId": "delete-filter-access-group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid фильтра",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.statusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/access_group/{id}": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Редактирование информации",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Access Group"
+                ],
+                "summary": "Редактирование",
+                "operationId": "update-access-group",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid для редактирования",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Данные для редактирования",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.UpdateAccessGroupInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.statusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ad_log": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Список данных AD log по переданным параметрам",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Active Directory"
+                ],
+                "summary": "Список данных Ad log",
+                "operationId": "get-ad-log-by-query",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "в формате yyyy-mm",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "начало поиска в формате yyyy-mm-dd,(включительно)",
+                        "name": "from_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "конец поиска в формате yyyy-mm-dd,(включительно)",
+                        "name": "to_date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "не строгий поиск, логин или фамилия или департамент",
+                        "name": "ad_login",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ad_log/check_log_file_csv": {
+            "get": {
+                "description": "Проверка на существование лог файла в папке, для загрузки в базу данных,\nПуть к папке в файле настроек проекта",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Active Directory"
+                ],
+                "summary": "Проверка и загрузка данных",
+                "operationId": "check-log-file-csv",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ad_log/download": {
+            "get": {
+                "description": "Скачивание файла Excell с данными лога",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Active Directory"
+                ],
+                "summary": "Скачивание файла",
+                "operationId": "download-excell-file-ad-log",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/control_time_pause": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Контроль временных отключений\nСписок данных Control Time Pause по переданным параметрам",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Список данных Control Time Pause",
+                "operationId": "get-ctpq",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "в формате yyyy-mm-dd",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "1 или 0, 1-проблема,0-закрыто",
+                        "name": "control_status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Идентификатор связи с router onyma speed",
+                        "name": "router_onyma_speed_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя интерфейса",
+                        "name": "interface_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айпи интерфейса",
+                        "name": "ip_interface",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Номер Лицевого счёта Онимы",
+                        "name": "dognum",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя роутера",
+                        "name": "router_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айди подключения в Ониме",
+                        "name": "clsrv",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getControlTimePauseByQueryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/control_time_pause/download": {
+            "get": {
+                "description": "Контроль временного отключения\nСкачивание файла Excell с проблемными статусами Роутера и Онимы",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Router Onyma"
+                ],
+                "summary": "Скачивание файла",
+                "operationId": "download-excell-file-ccp-router-onyma",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/filter_router_onyma": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Получение  данных, Фильтры, разные данные",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Filter Router Onyma"
+                ],
+                "summary": "Получение данных",
+                "operationId": "get-filter-router-onyma",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "created_at",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "filter_desc",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "filter_type",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "filter_val",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "router_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "user_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "user_name",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление в базу новых данных, история изменений, разные данные",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Filter Router Onyma"
+                ],
+                "summary": "Добавление данных в filter(Исключения)",
+                "operationId": "insert-filter-router-onyma",
+                "parameters": [
+                    {
+                        "description": "Данные для внесения в базу",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.FilterRouterOnyma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/filter_router_onyma/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Удаление Фильтра",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Filter Router Onyma"
+                ],
+                "summary": "Удаление",
+                "operationId": "delete-filter",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid фильтра",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.statusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Список данных Problem Router Onyma Speeds по переданным параметрам, в формате yyyy-mm-dd",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Список данных Problem Router Onyma Speeds",
+                "operationId": "get-problem-router-onyma-speeds-by-query",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "в формате yyyy-mm-dd",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Статус записи",
+                        "name": "problem_status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Идентификатор связи с router onyma speed",
+                        "name": "router_onyma_speed_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя интерфейса",
+                        "name": "interface_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айпи интерфейса",
+                        "name": "ip_interface",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Номер Лицевого счёта Онимы",
+                        "name": "dognum",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя роутера",
+                        "name": "router_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айди подключения в Ониме",
+                        "name": "clsrv",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getAllProblemRouterOnymaSpeedsByQueryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление проблемных данных в таблицу с проблемными данными",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Добавление данных",
+                "operationId": "insert-problem-router-onyma-speeds",
+                "parameters": [
+                    {
+                        "description": "Проблемные Данные для внесения в базу",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.ProblemRouterOnyma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/check_close_problem_router_onyma_speed": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Проверка на соответствие данных полученых с Роутеров и Онимы\nЕсли проблемная строка перестала быть проблемной, то ставлю \"Закрыто\", это исправленная строка",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Проверка на соответствие",
+                "operationId": "check-close-problem-router-onyma-speed",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/check_control_time_pause": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Проверка на соответствие данных полученых с Роутеров и Онимы\nЕсли проблемная строка перестала быть проблемной, то ставлю \"Закрыто\", это исправленная строка",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Проверка на соответствие",
+                "operationId": "check-control-time-pause",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/check_router_onyma_speed": {
+            "get": {
+                "description": "Проверка на соответствие данных полученых с Роутеров и Онимы\nпо умолчанию статус \"В обработке\".\nЕсли в тексте описания интерфейса есть ### INET или ### ID и  запись проблемная, то сразу \"На проверку\", это клиенты",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Поиск проблемных строк",
+                "operationId": "check-router-onyma-speed",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/count": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Количество строк данных Problem Router Onyma Speeds по переданным параметрам, в формате yyyy-mm-dd",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Count Problem Router Onyma"
+                ],
+                "summary": "Количество строк данных Problem Router Onyma Speeds",
+                "operationId": "get-count-problem-router-onyma-speeds-by-query",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "в формате yyyy-mm-dd",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Статус записи",
+                        "name": "problem_status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Идентификатор связи с router onyma speed",
+                        "name": "router_onyma_speed_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя интерфейса",
+                        "name": "interface_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айпи интерфейса",
+                        "name": "ip_interface",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Номер Лицевого счёта Онимы",
+                        "name": "dognum",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя роутера",
+                        "name": "router_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айди подключения в Ониме",
+                        "name": "clsrv",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/date_list": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Список дат Problem Router Onyma Speeds, даты на которые есть проблемные записи",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Список дат Problem Router Onyma Speeds",
+                "operationId": "get-date-list-problem-router-onyma-speeds",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getDateListProblemRouterOnymaSpeedsByResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/download": {
+            "get": {
+                "description": "Скачивание файла Excell с проблемными строками",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Скачивание файла",
+                "operationId": "download-excell-file-problev-router-onyma",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/edit/{id}": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Редактирование информации проблемной строки.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Редактирование по interface_name",
+                "operationId": "update-problem-router-onyma-speed-by-intrface-name",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid для редактирования",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Данные для редактирования",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.UpdateProblemRouterOnymaSpeedInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.statusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/statistic/form1": {
+            "get": {
+                "description": "Скачивание файла статистики Форма 1(Excell)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Скачивание файла, Форма 1",
+                "operationId": "download-excell-file-problev-router-onyma-form1",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "все записи до текущей даты, дата в формате yyyy-mm-dd",
+                        "name": "date_end",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/statistic/status_all": {
+            "get": {
+                "description": "Данные по Статусам",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Статистика",
+                "operationId": "statistic-status-all",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "c текущей даты, дата в формате yyyy-mm-dd",
+                        "name": "date_from",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "по текущую дату, дата в формате yyyy-mm-dd",
+                        "name": "date_to",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/problem/{id}": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Редактирование информации проблемной строки.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Problem Router Onyma"
+                ],
+                "summary": "Редактирование по id",
+                "operationId": "update-problem-router-onyma-speed",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid для редактирования",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Данные для редактирования",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.UpdateProblemRouterOnymaSpeedInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.statusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/router_onyma_history": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Получение  данных, история изменений, разные данные",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "History Router Onyma"
+                ],
+                "summary": "Получение данных",
+                "operationId": "get-router-onyma-history",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "problem_router_onyma_speed_id",
+                        "name": "problem_router_onyma_speed_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "старое значение",
+                        "name": "old_val",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "новое значение",
+                        "name": "new_val",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "сообщение",
+                        "name": "msg",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айди юзера",
+                        "name": "user_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Филиал общества",
+                        "name": "branch_service",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Статус проблемной записи",
+                        "name": "problem_status",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Статус Клиента в Ониме",
+                        "name": "client_status_onyma",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Название компании в Ониме",
+                        "name": "company_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "IP интерфейса",
+                        "name": "ip_interface",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Название интерфейса",
+                        "name": "interface_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "дата создания сообщения",
+                        "name": "created_at",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление в базу новых данных, история изменений, разные данные",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "History Router Onyma"
+                ],
+                "summary": "Добавление данных истории изменений",
+                "operationId": "insert-router-onyma-history",
+                "parameters": [
+                    {
+                        "description": "Данные для внесения в базу",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.ProblemRouterOnymaHistory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/speeds": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Список данных  Router Onyma Speeds по переданным параметрам",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Router Onyma"
+                ],
+                "summary": "Список данных Router Onyma Speeds",
+                "operationId": "get-router-onyma-speeds-by-query",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Идентификатор uuid router onyma speed",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "в формате yyyy-mm-dd",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Филиал общества в которо предоставляется услуга",
+                        "name": "branch_service",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя интерфейса",
+                        "name": "interface_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айпи интерфейса",
+                        "name": "ip_interface",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Имя роутера",
+                        "name": "router_name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Номер Лицевого счёта Онимы",
+                        "name": "dognum",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Айди подключения в Ониме",
+                        "name": "clsrv",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "на роутере 1-shutdown, 0-включено",
+                        "name": "iface_shutdown_router",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Статус клиента в ониме",
+                        "name": "client_status_onyma",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getAllRouterOnymaSpeedsByQueryResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление в базу новых данных",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Router Onyma"
+                ],
+                "summary": "Добавление данных",
+                "operationId": "insert-router-onyma-speeds",
+                "parameters": [
+                    {
+                        "description": "Данные для внесения в базу",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.RouterOnyma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/speeds/{date}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Список данных Router Onyma Speeds на определённую дату, в формате yyyy-mm-dd",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Router Onyma"
+                ],
+                "summary": "Список данных Router Onyma Speeds by Date",
+                "operationId": "get-router-onyma-speeds-by-date",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "на какую дату ищем?",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getAllRouterOnymaSpeedsByDateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/speeds_all": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление в базу новых данных, сразу несколько строк",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Router Onyma"
+                ],
+                "summary": "Добавление Массива данных",
+                "operationId": "insert-router-onyma-speeds-all",
+                "parameters": [
+                    {
+                        "description": "Данные для внесения в базу",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/tc.RouterOnyma"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/router_onyma/statistic/group_by_router": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Данные сгрупперованны по роутерам",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Router Onyma"
+                ],
+                "operationId": "statistic-router-onyma-group-by-router",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "c текущей даты, дата в формате yyyy-mm-dd",
+                        "name": "date_from",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "по текущую дату, дата в формате yyyy-mm-dd",
+                        "name": "date_to",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/list": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Информация по всем пользователям",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Пользователь"
+                ],
+                "summary": "Список всех пользователей",
+                "operationId": "get-users-list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getAllUsersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/module": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Информация по модулям доступа авторизованного пользователя",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Пользователь"
+                ],
+                "summary": "Информация по модулям",
+                "operationId": "get-user-module",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getAllUserModuleResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/module/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Информация по модулям доступа пользователя, по uuid пользователя",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Пользователь"
+                ],
+                "summary": "Информация по модулям",
+                "operationId": "get-user-module-by-id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid пользователя",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.getAllUserModuleResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Информация по пользователю по uuid пользователя",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Пользователь"
+                ],
+                "summary": "Информация",
+                "operationId": "get-user-by-id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid пользователя",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/tc.User"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Редактирование информации о пользователе",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Пользователь"
+                ],
+                "summary": "Редактирование",
+                "operationId": "update-user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid пользователя",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Поля для изменений",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.UpdateUserInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.statusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Удаление Пользователя",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Пользователь"
+                ],
+                "summary": "Удаление",
+                "operationId": "delete-user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid пользователя",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.statusResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sign-in": {
+            "post": {
+                "description": "Авторизация, получение токена для закрытых функций Api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Авторизация",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "description": "credentials",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.signInInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "token",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sign-up": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Добавление в базу нового пользователя",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Создание пользователя",
+                "operationId": "create-account",
+                "parameters": [
+                    {
+                        "description": "Данные для создания",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/tc.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/handler.errorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler.errorResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.getAllAccessGroupByQueryResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tc.AccessGroup"
+                    }
+                }
+            }
+        },
+        "handler.getAllProblemRouterOnymaSpeedsByQueryResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tc.ProblemRouterOnymaQuery"
+                    }
+                }
+            }
+        },
+        "handler.getAllRouterOnymaSpeedsByDateResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tc.RouterOnyma"
+                    }
+                }
+            }
+        },
+        "handler.getAllRouterOnymaSpeedsByQueryResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tc.RouterOnyma"
+                    }
+                }
+            }
+        },
+        "handler.getAllUserModuleResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tc.UserModule"
+                    }
+                }
+            }
+        },
+        "handler.getAllUsersResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tc.UsersList"
+                    }
+                }
+            }
+        },
+        "handler.getControlTimePauseByQueryResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/tc.ControlTimePause"
+                    }
+                }
+            }
+        },
+        "handler.getDateListProblemRouterOnymaSpeedsByResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "handler.signInInput": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.statusResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.AccessGroup": {
+            "type": "object",
+            "properties": {
+                "access_group": {
+                    "type": "string"
+                },
+                "access_status": {
+                    "type": "string"
+                },
+                "client_status": {
+                    "type": "integer"
+                },
+                "clsrv": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "dognum": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "iface_desc": {
+                    "type": "string"
+                },
+                "iface_host": {
+                    "type": "string"
+                },
+                "iface_name": {
+                    "type": "string"
+                },
+                "in_policy": {
+                    "type": "string"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "out_policy": {
+                    "type": "string"
+                },
+                "router_name": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.ControlTimePause": {
+            "type": "object",
+            "properties": {
+                "branch_contract": {
+                    "type": "string"
+                },
+                "branch_service": {
+                    "type": "string"
+                },
+                "client_status_onyma": {
+                    "type": "integer"
+                },
+                "clsrv": {
+                    "type": "string"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "control_status": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "dognum": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "iface_shutdown_router": {
+                    "type": "integer"
+                },
+                "in_policy_router": {
+                    "type": "string"
+                },
+                "in_speed_onyma": {
+                    "type": "string"
+                },
+                "in_speed_router": {
+                    "type": "string"
+                },
+                "insert_datetime": {
+                    "type": "string"
+                },
+                "interface_description": {
+                    "type": "string"
+                },
+                "interface_name": {
+                    "type": "string"
+                },
+                "ip_interface": {
+                    "type": "string"
+                },
+                "out_policy_router": {
+                    "type": "string"
+                },
+                "out_speed_onyma": {
+                    "type": "string"
+                },
+                "out_speed_router": {
+                    "type": "string"
+                },
+                "router_name": {
+                    "type": "string"
+                },
+                "router_onyma_speed_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.FilterAccessGroup": {
+            "type": "object",
+            "required": [
+                "filter_type",
+                "filter_val",
+                "router_name"
+            ],
+            "properties": {
+                "_": {
+                    "type": "string"
+                },
+                "__": {
+                    "type": "string"
+                },
+                "filter_desc": {
+                    "type": "string"
+                },
+                "filter_type": {
+                    "type": "string"
+                },
+                "filter_val": {
+                    "type": "string"
+                },
+                "router_name": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.FilterRouterOnyma": {
+            "type": "object",
+            "required": [
+                "filter_type",
+                "filter_val",
+                "router_name"
+            ],
+            "properties": {
+                "_": {
+                    "type": "string"
+                },
+                "__": {
+                    "type": "string"
+                },
+                "filter_desc": {
+                    "type": "string"
+                },
+                "filter_type": {
+                    "type": "string"
+                },
+                "filter_val": {
+                    "type": "string"
+                },
+                "router_name": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.ProblemRouterOnyma": {
+            "type": "object",
+            "properties": {
+                "branch_contract": {
+                    "type": "string"
+                },
+                "branch_service": {
+                    "type": "string"
+                },
+                "client_status_onyma": {
+                    "type": "integer"
+                },
+                "clsrv": {
+                    "type": "string"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "dognum": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "in_policy_router": {
+                    "type": "string"
+                },
+                "in_speed_onyma": {
+                    "type": "string"
+                },
+                "in_speed_router": {
+                    "type": "string"
+                },
+                "insert_datetime": {
+                    "type": "string"
+                },
+                "interface_description": {
+                    "type": "string"
+                },
+                "interface_name": {
+                    "type": "string"
+                },
+                "ip_interface": {
+                    "type": "string"
+                },
+                "out_policy_router": {
+                    "type": "string"
+                },
+                "out_speed_onyma": {
+                    "type": "string"
+                },
+                "out_speed_router": {
+                    "type": "string"
+                },
+                "problem_status": {
+                    "type": "string"
+                },
+                "problem_status_old": {
+                    "type": "string"
+                },
+                "router_name": {
+                    "type": "string"
+                },
+                "router_onyma_speed_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.ProblemRouterOnymaHistory": {
+            "type": "object",
+            "required": [
+                "problem_router_onyma_speed_id"
+            ],
+            "properties": {
+                "_": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "new_val": {
+                    "type": "string"
+                },
+                "old_val": {
+                    "type": "string"
+                },
+                "problem_router_onyma_speed_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.ProblemRouterOnymaQuery": {
+            "type": "object",
+            "properties": {
+                "branch_contract": {
+                    "type": "string"
+                },
+                "branch_service": {
+                    "type": "string"
+                },
+                "client_status_onyma": {
+                    "type": "integer"
+                },
+                "clsrv": {
+                    "type": "string"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "dognum": {
+                    "type": "string"
+                },
+                "dppp_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "in_policy_router": {
+                    "type": "string"
+                },
+                "in_speed_onyma": {
+                    "type": "string"
+                },
+                "in_speed_router": {
+                    "type": "string"
+                },
+                "insert_datetime": {
+                    "type": "string"
+                },
+                "interface_description": {
+                    "type": "string"
+                },
+                "interface_name": {
+                    "type": "string"
+                },
+                "ip_interface": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "new_val": {
+                    "type": "string"
+                },
+                "old_val": {
+                    "type": "string"
+                },
+                "out_policy_router": {
+                    "type": "string"
+                },
+                "out_speed_onyma": {
+                    "type": "string"
+                },
+                "out_speed_router": {
+                    "type": "string"
+                },
+                "problem_router_onyma_speed_id": {
+                    "description": "Problem_router_onyma_history_id NullString `json:\"problem_router_onyma_history_id\" db:\"id\" swaggertype:\"string\"`",
+                    "type": "string"
+                },
+                "problem_status": {
+                    "type": "string"
+                },
+                "problem_status_old": {
+                    "type": "string"
+                },
+                "router_name": {
+                    "type": "string"
+                },
+                "router_onyma_speed_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.RouterOnyma": {
+            "type": "object",
+            "properties": {
+                "branch_contract": {
+                    "type": "string"
+                },
+                "branch_service": {
+                    "type": "string"
+                },
+                "client_status_onyma": {
+                    "type": "integer"
+                },
+                "clsrv": {
+                    "type": "string"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "dognum": {
+                    "type": "string"
+                },
+                "dppp_name": {
+                    "type": "string"
+                },
+                "iface_shutdown_router": {
+                    "type": "integer"
+                },
+                "in_policy_router": {
+                    "type": "string"
+                },
+                "in_speed_onyma": {
+                    "type": "string"
+                },
+                "in_speed_router": {
+                    "type": "string"
+                },
+                "insert_datetime": {
+                    "type": "string"
+                },
+                "interface_description": {
+                    "type": "string"
+                },
+                "interface_name": {
+                    "type": "string"
+                },
+                "ip_interface": {
+                    "type": "string"
+                },
+                "out_policy_router": {
+                    "type": "string"
+                },
+                "out_speed_onyma": {
+                    "type": "string"
+                },
+                "out_speed_router": {
+                    "type": "string"
+                },
+                "router_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.UpdateAccessGroupInput": {
+            "type": "object",
+            "required": [
+                "access_status",
+                "id"
+            ],
+            "properties": {
+                "access_status": {
+                    "type": "string"
+                },
+                "access_status_old": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.UpdateProblemRouterOnymaSpeedInput": {
+            "type": "object",
+            "required": [
+                "id",
+                "problem_status"
+            ],
+            "properties": {
+                "branch_contract": {
+                    "type": "string"
+                },
+                "clsrv": {
+                    "type": "string"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "dognum": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "in_speed_onyma": {
+                    "type": "string"
+                },
+                "in_speed_router": {
+                    "type": "string"
+                },
+                "interface_name": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                },
+                "out_speed_onyma": {
+                    "type": "string"
+                },
+                "out_speed_router": {
+                    "type": "string"
+                },
+                "problem_status": {
+                    "type": "string"
+                },
+                "problem_status_old": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.UpdateUserInput": {
+            "type": "object",
+            "required": [
+                "email",
+                "name"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "module_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.User": {
+            "type": "object",
+            "required": [
+                "email",
+                "name",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "module_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.UserModule": {
+            "type": "object",
+            "properties": {
+                "module_desc": {
+                    "type": "string"
+                },
+                "module_name": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "tc.UsersList": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "module_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

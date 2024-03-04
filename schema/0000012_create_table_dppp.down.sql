@@ -1,0 +1,1 @@
+drop table dppp_adress_base;

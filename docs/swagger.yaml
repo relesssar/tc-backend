@@ -1,0 +1,2413 @@
+basePath: /
+definitions:
+  handler.errorResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  handler.getAllAccessGroupByQueryResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/tc.AccessGroup'
+        type: array
+    type: object
+  handler.getAllProblemRouterOnymaSpeedsByQueryResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/tc.ProblemRouterOnymaQuery'
+        type: array
+    type: object
+  handler.getAllRouterOnymaSpeedsByDateResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/tc.RouterOnyma'
+        type: array
+    type: object
+  handler.getAllRouterOnymaSpeedsByQueryResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/tc.RouterOnyma'
+        type: array
+    type: object
+  handler.getAllUserModuleResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/tc.UserModule'
+        type: array
+    type: object
+  handler.getAllUsersResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/tc.UsersList'
+        type: array
+    type: object
+  handler.getControlTimePauseByQueryResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/tc.ControlTimePause'
+        type: array
+    type: object
+  handler.getDateListProblemRouterOnymaSpeedsByResponse:
+    properties:
+      data:
+        items:
+          type: string
+        type: array
+    type: object
+  handler.signInInput:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  handler.statusResponse:
+    properties:
+      status:
+        type: string
+    type: object
+  tc.AccessGroup:
+    properties:
+      access_group:
+        type: string
+      access_status:
+        type: string
+      client_status:
+        type: integer
+      clsrv:
+        type: string
+      created_at:
+        type: string
+      dognum:
+        type: string
+      id:
+        type: string
+      iface_desc:
+        type: string
+      iface_host:
+        type: string
+      iface_name:
+        type: string
+      in_policy:
+        type: string
+      ip:
+        type: string
+      out_policy:
+        type: string
+      router_name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  tc.ControlTimePause:
+    properties:
+      branch_contract:
+        type: string
+      branch_service:
+        type: string
+      client_status_onyma:
+        type: integer
+      clsrv:
+        type: string
+      company_name:
+        type: string
+      control_status:
+        type: integer
+      created_at:
+        type: string
+      dognum:
+        type: string
+      id:
+        type: string
+      iface_shutdown_router:
+        type: integer
+      in_policy_router:
+        type: string
+      in_speed_onyma:
+        type: string
+      in_speed_router:
+        type: string
+      insert_datetime:
+        type: string
+      interface_description:
+        type: string
+      interface_name:
+        type: string
+      ip_interface:
+        type: string
+      out_policy_router:
+        type: string
+      out_speed_onyma:
+        type: string
+      out_speed_router:
+        type: string
+      router_name:
+        type: string
+      router_onyma_speed_id:
+        type: string
+    type: object
+  tc.FilterAccessGroup:
+    properties:
+      _:
+        type: string
+      __:
+        type: string
+      filter_desc:
+        type: string
+      filter_type:
+        type: string
+      filter_val:
+        type: string
+      router_name:
+        type: string
+      user_id:
+        type: string
+    required:
+    - filter_type
+    - filter_val
+    - router_name
+    type: object
+  tc.FilterRouterOnyma:
+    properties:
+      _:
+        type: string
+      __:
+        type: string
+      filter_desc:
+        type: string
+      filter_type:
+        type: string
+      filter_val:
+        type: string
+      router_name:
+        type: string
+      user_id:
+        type: string
+    required:
+    - filter_type
+    - filter_val
+    - router_name
+    type: object
+  tc.ProblemRouterOnyma:
+    properties:
+      branch_contract:
+        type: string
+      branch_service:
+        type: string
+      client_status_onyma:
+        type: integer
+      clsrv:
+        type: string
+      company_name:
+        type: string
+      dognum:
+        type: string
+      id:
+        type: string
+      in_policy_router:
+        type: string
+      in_speed_onyma:
+        type: string
+      in_speed_router:
+        type: string
+      insert_datetime:
+        type: string
+      interface_description:
+        type: string
+      interface_name:
+        type: string
+      ip_interface:
+        type: string
+      out_policy_router:
+        type: string
+      out_speed_onyma:
+        type: string
+      out_speed_router:
+        type: string
+      problem_status:
+        type: string
+      problem_status_old:
+        type: string
+      router_name:
+        type: string
+      router_onyma_speed_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  tc.ProblemRouterOnymaHistory:
+    properties:
+      _:
+        type: string
+      msg:
+        type: string
+      new_val:
+        type: string
+      old_val:
+        type: string
+      problem_router_onyma_speed_id:
+        type: string
+      user_id:
+        type: string
+    required:
+    - problem_router_onyma_speed_id
+    type: object
+  tc.ProblemRouterOnymaQuery:
+    properties:
+      branch_contract:
+        type: string
+      branch_service:
+        type: string
+      client_status_onyma:
+        type: integer
+      clsrv:
+        type: string
+      company_name:
+        type: string
+      created_at:
+        type: string
+      dognum:
+        type: string
+      dppp_name:
+        type: string
+      id:
+        type: string
+      in_policy_router:
+        type: string
+      in_speed_onyma:
+        type: string
+      in_speed_router:
+        type: string
+      insert_datetime:
+        type: string
+      interface_description:
+        type: string
+      interface_name:
+        type: string
+      ip_interface:
+        type: string
+      msg:
+        type: string
+      name:
+        type: string
+      new_val:
+        type: string
+      old_val:
+        type: string
+      out_policy_router:
+        type: string
+      out_speed_onyma:
+        type: string
+      out_speed_router:
+        type: string
+      problem_router_onyma_speed_id:
+        description: Problem_router_onyma_history_id NullString `json:"problem_router_onyma_history_id"
+          db:"id" swaggertype:"string"`
+        type: string
+      problem_status:
+        type: string
+      problem_status_old:
+        type: string
+      router_name:
+        type: string
+      router_onyma_speed_id:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  tc.RouterOnyma:
+    properties:
+      branch_contract:
+        type: string
+      branch_service:
+        type: string
+      client_status_onyma:
+        type: integer
+      clsrv:
+        type: string
+      company_name:
+        type: string
+      dognum:
+        type: string
+      dppp_name:
+        type: string
+      iface_shutdown_router:
+        type: integer
+      in_policy_router:
+        type: string
+      in_speed_onyma:
+        type: string
+      in_speed_router:
+        type: string
+      insert_datetime:
+        type: string
+      interface_description:
+        type: string
+      interface_name:
+        type: string
+      ip_interface:
+        type: string
+      out_policy_router:
+        type: string
+      out_speed_onyma:
+        type: string
+      out_speed_router:
+        type: string
+      router_name:
+        type: string
+    type: object
+  tc.UpdateAccessGroupInput:
+    properties:
+      access_status:
+        type: string
+      access_status_old:
+        type: string
+      id:
+        type: string
+      msg:
+        type: string
+    required:
+    - access_status
+    - id
+    type: object
+  tc.UpdateProblemRouterOnymaSpeedInput:
+    properties:
+      branch_contract:
+        type: string
+      clsrv:
+        type: string
+      company_name:
+        type: string
+      dognum:
+        type: string
+      id:
+        type: string
+      in_speed_onyma:
+        type: string
+      in_speed_router:
+        type: string
+      interface_name:
+        type: string
+      msg:
+        type: string
+      out_speed_onyma:
+        type: string
+      out_speed_router:
+        type: string
+      problem_status:
+        type: string
+      problem_status_old:
+        type: string
+    required:
+    - id
+    - problem_status
+    type: object
+  tc.UpdateUserInput:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      module_name:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+    required:
+    - email
+    - name
+    type: object
+  tc.User:
+    properties:
+      email:
+        type: string
+      module_name:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+    required:
+    - email
+    - name
+    - password
+    type: object
+  tc.UserModule:
+    properties:
+      module_desc:
+        type: string
+      module_name:
+        type: string
+      user_id:
+        type: string
+    type: object
+  tc.UsersList:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      module_name:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+host: tc.kaztranscom.kz:9000
+info:
+  contact:
+    email: 7773785631@mail.ru,K.Yatsenko@kaztranscom.kz
+    name: Серышев А.В., Яценко К.Ю.
+  description: API Сервер для Программы Total Control
+  title: Total Control
+  version: "1.0"
+paths:
+  /api/access_group:
+    get:
+      consumes:
+      - application/json
+      description: Список данных Access Group по переданным параметрам
+      operationId: get-access-group-by-query
+      parameters:
+      - description: в формате yyyy-mm-dd
+        in: query
+        name: date
+        type: string
+      - description: Учитывать или нет фильтр
+        in: query
+        name: check_filter
+        type: string
+      - description: Закрыто, В обработке
+        in: query
+        name: access_status
+        type: string
+      - description: 'можно указать несколько, через запятую '
+        in: query
+        name: router_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getAllAccessGroupByQueryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список данных
+      tags:
+      - Access Group
+    post:
+      consumes:
+      - application/json
+      description: Добавление в базу новых данных
+      operationId: insert-access-group
+      parameters:
+      - description: Данные для внесения в базу
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.AccessGroup'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление данных
+      tags:
+      - Access Group
+  /api/access_group/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Редактирование информации
+      operationId: update-access-group
+      parameters:
+      - description: uuid для редактирования
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Данные для редактирования
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.UpdateAccessGroupInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.statusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование
+      tags:
+      - Access Group
+  /api/access_group/access_group_history:
+    post:
+      consumes:
+      - application/json
+      description: Получение  данных, история изменений, разные данные
+      operationId: get-access-group-history
+      parameters:
+      - in: query
+        name: id
+        type: string
+      - in: query
+        items:
+          type: string
+        name: ids
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение данных
+      tags:
+      - Access Group
+  /api/access_group/download:
+    get:
+      consumes:
+      - application/json
+      description: Скачивание файла статистики Форма 1(Excell)
+      operationId: download-excell-file-access-group
+      parameters:
+      - description: в формате yyyy-mm-dd
+        in: query
+        name: date
+        type: string
+      - description: Учитывать или нет фильтр
+        in: query
+        name: check_filter
+        type: string
+      - description: Закрыто, В обработке
+        in: query
+        name: access_status
+        type: string
+      - description: 'можно указать несколько, через запятую '
+        in: query
+        name: router_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Скачивание файла списка Access Group
+      tags:
+      - Access Group
+  /api/access_group/filter_access_group:
+    get:
+      consumes:
+      - application/json
+      description: Получение  данных, Фильтры, разные данные
+      operationId: get-filter-access-group
+      parameters:
+      - in: query
+        name: created_at
+        type: string
+      - in: query
+        name: filter_desc
+        type: string
+      - in: query
+        name: filter_type
+        type: string
+      - in: query
+        name: filter_val
+        type: string
+      - in: query
+        name: id
+        type: string
+      - in: query
+        name: router_name
+        type: string
+      - in: query
+        name: user_id
+        type: string
+      - in: query
+        name: user_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение данных
+      tags:
+      - Filter Access Group
+    post:
+      consumes:
+      - application/json
+      description: Добавление в базу новых данных, история изменений, разные данные
+      operationId: insert-filter-access-group
+      parameters:
+      - description: Данные для внесения в базу
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.FilterAccessGroup'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление данных в filter(Исключения)
+      tags:
+      - Filter Access Group
+  /api/access_group/filter_access_group/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление Фильтра
+      operationId: delete-filter-access-group
+      parameters:
+      - description: uuid фильтра
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.statusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Удаление
+      tags:
+      - Filter Access Group
+  /api/ad_log:
+    get:
+      consumes:
+      - application/json
+      description: Список данных AD log по переданным параметрам
+      operationId: get-ad-log-by-query
+      parameters:
+      - description: в формате yyyy-mm
+        in: query
+        name: date
+        type: string
+      - description: начало поиска в формате yyyy-mm-dd,(включительно)
+        in: query
+        name: from_date
+        type: string
+      - description: конец поиска в формате yyyy-mm-dd,(включительно)
+        in: query
+        name: to_date
+        type: string
+      - description: не строгий поиск, логин или фамилия или департамент
+        in: query
+        name: ad_login
+        type: string
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список данных Ad log
+      tags:
+      - Active Directory
+  /api/ad_log/check_log_file_csv:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        Проверка на существование лог файла в папке, для загрузки в базу данных,
+        Путь к папке в файле настроек проекта
+      operationId: check-log-file-csv
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Проверка и загрузка данных
+      tags:
+      - Active Directory
+  /api/ad_log/download:
+    get:
+      consumes:
+      - application/json
+      description: Скачивание файла Excell с данными лога
+      operationId: download-excell-file-ad-log
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Скачивание файла
+      tags:
+      - Active Directory
+  /api/router_onyma/control_time_pause:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        Контроль временных отключений
+        Список данных Control Time Pause по переданным параметрам
+      operationId: get-ctpq
+      parameters:
+      - description: в формате yyyy-mm-dd
+        in: query
+        name: date
+        type: string
+      - description: 1 или 0, 1-проблема,0-закрыто
+        in: query
+        name: control_status
+        type: string
+      - description: Идентификатор связи с router onyma speed
+        in: query
+        name: router_onyma_speed_id
+        type: string
+      - description: Имя интерфейса
+        in: query
+        name: interface_name
+        type: string
+      - description: Айпи интерфейса
+        in: query
+        name: ip_interface
+        type: string
+      - description: Номер Лицевого счёта Онимы
+        in: query
+        name: dognum
+        type: string
+      - description: Имя роутера
+        in: query
+        name: router_name
+        type: string
+      - description: Айди подключения в Ониме
+        in: query
+        name: clsrv
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getControlTimePauseByQueryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список данных Control Time Pause
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/control_time_pause/download:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        Контроль временного отключения
+        Скачивание файла Excell с проблемными статусами Роутера и Онимы
+      operationId: download-excell-file-ccp-router-onyma
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Скачивание файла
+      tags:
+      - Router Onyma
+  /api/router_onyma/filter_router_onyma:
+    get:
+      consumes:
+      - application/json
+      description: Получение  данных, Фильтры, разные данные
+      operationId: get-filter-router-onyma
+      parameters:
+      - in: query
+        name: created_at
+        type: string
+      - in: query
+        name: filter_desc
+        type: string
+      - in: query
+        name: filter_type
+        type: string
+      - in: query
+        name: filter_val
+        type: string
+      - in: query
+        name: id
+        type: string
+      - in: query
+        name: router_name
+        type: string
+      - in: query
+        name: user_id
+        type: string
+      - in: query
+        name: user_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение данных
+      tags:
+      - Filter Router Onyma
+    post:
+      consumes:
+      - application/json
+      description: Добавление в базу новых данных, история изменений, разные данные
+      operationId: insert-filter-router-onyma
+      parameters:
+      - description: Данные для внесения в базу
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.FilterRouterOnyma'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление данных в filter(Исключения)
+      tags:
+      - Filter Router Onyma
+  /api/router_onyma/filter_router_onyma/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление Фильтра
+      operationId: delete-filter
+      parameters:
+      - description: uuid фильтра
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.statusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Удаление
+      tags:
+      - Filter Router Onyma
+  /api/router_onyma/problem:
+    get:
+      consumes:
+      - application/json
+      description: Список данных Problem Router Onyma Speeds по переданным параметрам,
+        в формате yyyy-mm-dd
+      operationId: get-problem-router-onyma-speeds-by-query
+      parameters:
+      - description: в формате yyyy-mm-dd
+        in: query
+        name: date
+        type: string
+      - description: Статус записи
+        in: query
+        name: problem_status
+        type: string
+      - description: Идентификатор связи с router onyma speed
+        in: query
+        name: router_onyma_speed_id
+        type: string
+      - description: Имя интерфейса
+        in: query
+        name: interface_name
+        type: string
+      - description: Айпи интерфейса
+        in: query
+        name: ip_interface
+        type: string
+      - description: Номер Лицевого счёта Онимы
+        in: query
+        name: dognum
+        type: string
+      - description: Имя роутера
+        in: query
+        name: router_name
+        type: string
+      - description: Айди подключения в Ониме
+        in: query
+        name: clsrv
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getAllProblemRouterOnymaSpeedsByQueryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список данных Problem Router Onyma Speeds
+      tags:
+      - Problem Router Onyma
+    post:
+      consumes:
+      - application/json
+      description: Добавление проблемных данных в таблицу с проблемными данными
+      operationId: insert-problem-router-onyma-speeds
+      parameters:
+      - description: Проблемные Данные для внесения в базу
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.ProblemRouterOnyma'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление данных
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Редактирование информации проблемной строки.
+      operationId: update-problem-router-onyma-speed
+      parameters:
+      - description: uuid для редактирования
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Данные для редактирования
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.UpdateProblemRouterOnymaSpeedInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.statusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование по id
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/check_close_problem_router_onyma_speed:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        Проверка на соответствие данных полученых с Роутеров и Онимы
+        Если проблемная строка перестала быть проблемной, то ставлю "Закрыто", это исправленная строка
+      operationId: check-close-problem-router-onyma-speed
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Проверка на соответствие
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/check_control_time_pause:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        Проверка на соответствие данных полученых с Роутеров и Онимы
+        Если проблемная строка перестала быть проблемной, то ставлю "Закрыто", это исправленная строка
+      operationId: check-control-time-pause
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Проверка на соответствие
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/check_router_onyma_speed:
+    get:
+      consumes:
+      - application/json
+      description: |-
+        Проверка на соответствие данных полученых с Роутеров и Онимы
+        по умолчанию статус "В обработке".
+        Если в тексте описания интерфейса есть ### INET или ### ID и  запись проблемная, то сразу "На проверку", это клиенты
+      operationId: check-router-onyma-speed
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Поиск проблемных строк
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/count:
+    get:
+      consumes:
+      - application/json
+      description: Количество строк данных Problem Router Onyma Speeds по переданным
+        параметрам, в формате yyyy-mm-dd
+      operationId: get-count-problem-router-onyma-speeds-by-query
+      parameters:
+      - description: в формате yyyy-mm-dd
+        in: query
+        name: date
+        type: string
+      - description: Статус записи
+        in: query
+        name: problem_status
+        type: string
+      - description: Идентификатор связи с router onyma speed
+        in: query
+        name: router_onyma_speed_id
+        type: string
+      - description: Имя интерфейса
+        in: query
+        name: interface_name
+        type: string
+      - description: Айпи интерфейса
+        in: query
+        name: ip_interface
+        type: string
+      - description: Номер Лицевого счёта Онимы
+        in: query
+        name: dognum
+        type: string
+      - description: Имя роутера
+        in: query
+        name: router_name
+        type: string
+      - description: Айди подключения в Ониме
+        in: query
+        name: clsrv
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Количество строк данных Problem Router Onyma Speeds
+      tags:
+      - Count Problem Router Onyma
+  /api/router_onyma/problem/date_list:
+    get:
+      consumes:
+      - application/json
+      description: Список дат Problem Router Onyma Speeds, даты на которые есть проблемные
+        записи
+      operationId: get-date-list-problem-router-onyma-speeds
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getDateListProblemRouterOnymaSpeedsByResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список дат Problem Router Onyma Speeds
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/download:
+    get:
+      consumes:
+      - application/json
+      description: Скачивание файла Excell с проблемными строками
+      operationId: download-excell-file-problev-router-onyma
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Скачивание файла
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/edit/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Редактирование информации проблемной строки.
+      operationId: update-problem-router-onyma-speed-by-intrface-name
+      parameters:
+      - description: uuid для редактирования
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Данные для редактирования
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.UpdateProblemRouterOnymaSpeedInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.statusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование по interface_name
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/statistic/form1:
+    get:
+      consumes:
+      - application/json
+      description: Скачивание файла статистики Форма 1(Excell)
+      operationId: download-excell-file-problev-router-onyma-form1
+      parameters:
+      - description: все записи до текущей даты, дата в формате yyyy-mm-dd
+        in: query
+        name: date_end
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Скачивание файла, Форма 1
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/problem/statistic/status_all:
+    get:
+      consumes:
+      - application/json
+      description: Данные по Статусам
+      operationId: statistic-status-all
+      parameters:
+      - description: c текущей даты, дата в формате yyyy-mm-dd
+        in: query
+        name: date_from
+        type: string
+      - description: по текущую дату, дата в формате yyyy-mm-dd
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Статистика
+      tags:
+      - Problem Router Onyma
+  /api/router_onyma/router_onyma_history:
+    get:
+      consumes:
+      - application/json
+      description: Получение  данных, история изменений, разные данные
+      operationId: get-router-onyma-history
+      parameters:
+      - description: id
+        in: query
+        name: id
+        type: string
+      - description: problem_router_onyma_speed_id
+        in: query
+        name: problem_router_onyma_speed_id
+        type: string
+      - description: старое значение
+        in: query
+        name: old_val
+        type: string
+      - description: новое значение
+        in: query
+        name: new_val
+        type: string
+      - description: сообщение
+        in: query
+        name: msg
+        type: string
+      - description: Айди юзера
+        in: query
+        name: user_id
+        type: string
+      - description: Филиал общества
+        in: query
+        name: branch_service
+        type: string
+      - description: Статус проблемной записи
+        in: query
+        name: problem_status
+        type: string
+      - description: Статус Клиента в Ониме
+        in: query
+        name: client_status_onyma
+        type: string
+      - description: Название компании в Ониме
+        in: query
+        name: company_name
+        type: string
+      - description: IP интерфейса
+        in: query
+        name: ip_interface
+        type: string
+      - description: Название интерфейса
+        in: query
+        name: interface_name
+        type: string
+      - description: дата создания сообщения
+        in: query
+        name: created_at
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение данных
+      tags:
+      - History Router Onyma
+    post:
+      consumes:
+      - application/json
+      description: Добавление в базу новых данных, история изменений, разные данные
+      operationId: insert-router-onyma-history
+      parameters:
+      - description: Данные для внесения в базу
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.ProblemRouterOnymaHistory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление данных истории изменений
+      tags:
+      - History Router Onyma
+  /api/router_onyma/speeds:
+    get:
+      consumes:
+      - application/json
+      description: Список данных  Router Onyma Speeds по переданным параметрам
+      operationId: get-router-onyma-speeds-by-query
+      parameters:
+      - description: Идентификатор uuid router onyma speed
+        in: query
+        name: id
+        type: string
+      - description: в формате yyyy-mm-dd
+        in: query
+        name: date
+        type: string
+      - description: Филиал общества в которо предоставляется услуга
+        in: query
+        name: branch_service
+        type: string
+      - description: Имя интерфейса
+        in: query
+        name: interface_name
+        type: string
+      - description: Айпи интерфейса
+        in: query
+        name: ip_interface
+        type: string
+      - description: Имя роутера
+        in: query
+        name: router_name
+        type: string
+      - description: Номер Лицевого счёта Онимы
+        in: query
+        name: dognum
+        type: string
+      - description: Айди подключения в Ониме
+        in: query
+        name: clsrv
+        type: string
+      - description: на роутере 1-shutdown, 0-включено
+        in: query
+        name: iface_shutdown_router
+        type: integer
+      - description: Статус клиента в ониме
+        in: query
+        name: client_status_onyma
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getAllRouterOnymaSpeedsByQueryResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список данных Router Onyma Speeds
+      tags:
+      - Router Onyma
+    post:
+      consumes:
+      - application/json
+      description: Добавление в базу новых данных
+      operationId: insert-router-onyma-speeds
+      parameters:
+      - description: Данные для внесения в базу
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.RouterOnyma'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление данных
+      tags:
+      - Router Onyma
+  /api/router_onyma/speeds/{date}:
+    get:
+      consumes:
+      - application/json
+      description: Список данных Router Onyma Speeds на определённую дату, в формате
+        yyyy-mm-dd
+      operationId: get-router-onyma-speeds-by-date
+      parameters:
+      - description: на какую дату ищем?
+        in: path
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getAllRouterOnymaSpeedsByDateResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список данных Router Onyma Speeds by Date
+      tags:
+      - Router Onyma
+  /api/router_onyma/speeds_all:
+    post:
+      consumes:
+      - application/json
+      description: Добавление в базу новых данных, сразу несколько строк
+      operationId: insert-router-onyma-speeds-all
+      parameters:
+      - description: Данные для внесения в базу
+        in: body
+        name: input
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/tc.RouterOnyma'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление Массива данных
+      tags:
+      - Router Onyma
+  /api/router_onyma/statistic/group_by_router:
+    get:
+      consumes:
+      - application/json
+      description: Данные сгрупперованны по роутерам
+      operationId: statistic-router-onyma-group-by-router
+      parameters:
+      - description: c текущей даты, дата в формате yyyy-mm-dd
+        in: query
+        name: date_from
+        type: string
+      - description: по текущую дату, дата в формате yyyy-mm-dd
+        in: query
+        name: date_to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      tags:
+      - Router Onyma
+  /api/user/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление Пользователя
+      operationId: delete-user
+      parameters:
+      - description: uuid пользователя
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.statusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Удаление
+      tags:
+      - Пользователь
+    get:
+      consumes:
+      - application/json
+      description: Информация по пользователю по uuid пользователя
+      operationId: get-user-by-id
+      parameters:
+      - description: uuid пользователя
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/tc.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Информация
+      tags:
+      - Пользователь
+    put:
+      consumes:
+      - application/json
+      description: Редактирование информации о пользователе
+      operationId: update-user
+      parameters:
+      - description: uuid пользователя
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Поля для изменений
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.UpdateUserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.statusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование
+      tags:
+      - Пользователь
+  /api/user/list:
+    get:
+      consumes:
+      - application/json
+      description: Информация по всем пользователям
+      operationId: get-users-list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getAllUsersResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Список всех пользователей
+      tags:
+      - Пользователь
+  /api/user/module:
+    get:
+      consumes:
+      - application/json
+      description: Информация по модулям доступа авторизованного пользователя
+      operationId: get-user-module
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getAllUserModuleResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Информация по модулям
+      tags:
+      - Пользователь
+  /api/user/module/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Информация по модулям доступа пользователя, по uuid пользователя
+      operationId: get-user-module-by-id
+      parameters:
+      - description: uuid пользователя
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.getAllUserModuleResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Информация по модулям
+      tags:
+      - Пользователь
+  /auth/sign-in:
+    post:
+      consumes:
+      - application/json
+      description: Авторизация, получение токена для закрытых функций Api
+      operationId: login
+      parameters:
+      - description: credentials
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.signInInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: token
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: Авторизация
+      tags:
+      - auth
+  /auth/sign-up:
+    post:
+      consumes:
+      - application/json
+      description: Добавление в базу нового пользователя
+      operationId: create-account
+      parameters:
+      - description: Данные для создания
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/tc.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Создание пользователя
+      tags:
+      - auth
+schemes:
+- https
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
